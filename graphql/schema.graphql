@@ -1,0 +1,18 @@
+type Note {
+    id: ID!
+    title: String!
+    body: String!
+    created_at: String!
+    updated_at: String!
+}
+
+type Query {
+    notes: [Note!]! @field(resolver: "App\\GraphQL\\Queries\\NoteQuery@getNotes")
+    note(id: ID!): Note! @field(resolver: "App\\GraphQL\\Queries\\NoteQuery@getNote")
+}
+
+type Mutation {
+    createNote(title: String!, body: String!): Note! @field(resolver: "App\\GraphQL\\Mutations\\NoteMutation@createNote")
+    updateNote(id: ID!, title: String!, body: String!): Note! @field(resolver: "App\\GraphQL\\Mutations\\NoteMutation@updateNote")
+    deleteNote(id: ID!): Note! @field(resolver: "App\\GraphQL\\Mutations\\NoteMutation@deleteNote")
+}
